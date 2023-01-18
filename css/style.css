@@ -1,3 +1,6 @@
+*{
+  margin: 0;
+}
 body{
     background-image: url("/img/02meti1-articleLarge-v10.gif");
     background-position: top;
@@ -9,10 +12,29 @@ body{
 .container{
   display: flex;  
   justify-content: center;
+  gap: 200px;
 }
 .gameboard{
     background-color: rgba(0, 128, 0, 0.188);
     height: 100vh;
-    width: 790px
-    
+    width: 790px;
+    align-self: center;
+}
+.block1{
+  align-self: left;
+  background-color: rgb(0, 0, 0);
+  width: 170px;
+  height: 100vh;
+  margin: 0;
+}
+.block2{
+  align-self: left;
+  background-color: rgb(0, 0, 0);
+  width: 170px;
+  height: 100vh;
+  margin: 0;
+}
+img{
+  width: 170px;
+  height: 50vh;
 }
