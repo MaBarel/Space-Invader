@@ -4,23 +4,30 @@ function GameObject(x, y, img) {
 GameObject.prototype.draw = function (ctx) {
     this.active && ctx.drawImage(this.img, this.x, this.y, 40, 40)
 }
-
+GameObject.prototype.move = function(dx, dy) {
+    this.x += dx; this.y += dy
+}
+let invaders = [];
+const player = new GameObject(230, 550, document.querySelector(".playerblack"));
+let invadersDx = -5
 function init() {
     let img = document.querySelector(".alien ")
     for (let y = 0; y < 3; y++) {
-        for (var x = 0; x < 8; x++) {
+        for (let x = 0; x < 8; x++) {
             invaders.push(new GameObject(50 + x * 50, 20 + y * 50, img))
         }
     }
 }
 function draw() {
     ctx.fillstyle = "#ddd"
-    ctx.fillRect(0, 0, 0, 0)
     invaders.forEach(inv => inv.draw(ctx))
     player.draw(ctx)
 }
 function move() {
-
+let leftX = invaders[0].x, rightX = invaders[invaders.length-1].x
+if(leftX <= 20 || rightX >= 440) {invadersDx = -invadersDx
+    invaders.forEach(inv.move(invadersDx, 0.5))
+}
 }
 
 function game() {
@@ -29,7 +36,14 @@ function game() {
 }
 function gamestart() {
     init()
-    document.addEventListener("keydown", function (e) { })
+    document.addEventListener("keydown", function (e) {
+        if (e.key ==="a" && player.x > 40){
+            player.move(-20,0)
+        }
+        if (e.key ==="d" && player.x < 420){
+            player.move(20,0)
+        }
+     })
     interval = setInterval(game, 50);
     startMessage.classList.remove("show")
 }
