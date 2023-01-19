@@ -16,8 +16,7 @@ body {
 
 .gameboard {
   margin-top: 10vh;
-  background-color: rgba(0, 128, 0, 0.397);
-  border: 5px solid rgb(54, 92, 54);
+  border: 5px solid rgb(0, 255, 0);
   height: 600px;
   width: 500px;
   align-self: center;
