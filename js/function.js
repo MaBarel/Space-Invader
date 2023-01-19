@@ -20,7 +20,6 @@ function init() {
 }
 function draw() {
     ctx.fillstyle = "#ddd"
-    ctx.fillrect = (0,0,500,600)
     invaders.forEach(inv => inv.draw(ctx))
     player.draw(ctx)
 }
@@ -46,5 +45,5 @@ function gamestart() {
         }
      })
     interval = setInterval(game, 50);
-    
+    startMessage.classList.remove("show")
 }
