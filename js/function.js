@@ -1,17 +1,28 @@
 function GameObject(x, y, img) {
-    this.x = x; 
-    this.y = y; 
-    this.img = img; 
+    this.x = x;
+    this.y = y;
+    this.img = img;
     this.active = true;
 }
 
 GameObject.prototype.draw = function (ctx) {
     this.active && ctx.drawImage(this.img, this.x, this.y, 40, 40)
 }
-GameObject.prototype.move = function(dx, dy) {
+GameObject.prototype.move = function (dx, dy) {
     this.x += dx; this.y += dy
 }
-
+function shot(x, y, dy) {
+    this.x = x;
+    this.y = y;
+    this.dy = dy;
+}
+shot.prototype.move = function() {
+    this.y += this.dy
+    return this.y > 0 && this.y < 600
+}
+shot.prototype.draw = function(ctx){
+    bullet.draw(ctx);
+}
 function init() {
     let img = document.querySelector(".alien ")
     for (let y = 0; y < 3; y++) {
@@ -27,7 +38,7 @@ function draw() {
 }
 
 function move() {
-    let leftX = invaders[0].x, rightX = invaders[invaders.length-1].x
+    let leftX = invaders[0].x, rightX = invaders[invaders.length - 1].x
     if (leftX <= 20 || rightX >= 440) {
         invadersDx = -invadersDx
     }
@@ -42,13 +53,13 @@ function game() {
 function gamestart() {
     init()
     document.addEventListener("keydown", function (e) {
-        if (e.key ==="a" && player.x > 40){
-            player.move(-20,0)
+        if (e.key === "a" && player.x > 40) {
+            player.move(-20, 0)
         }
-        if (e.key ==="d" && player.x < 420){
-            player.move(20,0)
+        if (e.key === "d" && player.x < 420) {
+            player.move(20, 0)
         }
-     })
+    })
     interval = setInterval(game, 50);
     startMessage.classList.remove("show")
 }

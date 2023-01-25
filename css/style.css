@@ -55,10 +55,12 @@ body {
   font-size: 5rem;
   flex-direction: column;
 }
+
 .startmessagetext {
   font-size: 3rem;
   font-style: helvetica;
 }
+
 .startmessagebutton {
   height: 50px;
   width: 200px;
@@ -70,6 +72,7 @@ body {
   color: rgb(0, 44, 9);
   content: "Start";
 }
+
 .startmessagebutton:hover {
   font-size: 3rem;
   background-color: rgba(0, 200, 0, 0.612);
@@ -78,6 +81,7 @@ body {
   color: rgb(0, 75, 9);
   content: "Start";
 }
+
 .startmessage.show {
   display: flex;
 }
