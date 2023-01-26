@@ -14,6 +14,10 @@ GameObject.prototype.move = function (dx, dy) {
 GameObject.prototype.fire = function(dy){
     return new shot (this.x+20, this.y+20, dy )
 }
+GameObject.prototype.isHitBy = function(shot) {
+    function between(x, a, b) { return a < x && x < b}
+    return this.active && between(shot.x, this.x, this.x+40) && between(shot.y+10, this.y, this.y+20)
+}
 function shot(x, y, dy) {
     this.x = x;
     this.y = y;
@@ -57,6 +61,7 @@ function move() {
         let r =active[Math.floor(Math.random()*active.length)]
         invaderShot = r.fire(20)
     }
+    if(cannonShot){}
 }
 
 function game() {
