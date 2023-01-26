@@ -61,7 +61,17 @@ function move() {
         let r =active[Math.floor(Math.random()*active.length)]
         invaderShot = r.fire(20)
     }
-    if(cannonShot){}
+    if(cannonShot) {    
+        let hit = invaders.find(inv => inv.isHitBy(cannonShot))
+        if (hit) {
+            hit.active = false
+            cannonShot = null
+        } else{
+            if (!cannonShot.move()){
+                cannonShot = null
+            }
+        }
+    }
 }
 
 function game() {
@@ -77,6 +87,9 @@ function gamestart() {
         }
         if (e.key === "d" && player.x < 420) {
             player.move(20, 0)
+        }
+        if (e.key === " " && !cannonShot) {
+            cannonShot = player.fire(-30)
         }
     })
     interval = setInterval(game, 50);
