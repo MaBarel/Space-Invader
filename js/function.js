@@ -11,6 +11,9 @@ GameObject.prototype.draw = function (ctx) {
 GameObject.prototype.move = function (dx, dy) {
     this.x += dx; this.y += dy
 }
+GameObject.prototype.fire = function(dy){
+    return new shot (this.x+20, this.y+20, dy )
+}
 function shot(x, y, dy) {
     this.x = x;
     this.y = y;
@@ -21,7 +24,8 @@ shot.prototype.move = function() {
     return this.y > 0 && this.y < 600
 }
 shot.prototype.draw = function(ctx){
-    bullet.draw(ctx);
+    ctx.fillStyle = "#A020F0"
+    ctx.fillRect(this.x-1, this.y, 3, 20)
 }
 function init() {
     let img = document.querySelector(".alien ")
@@ -35,6 +39,8 @@ function draw() {
     ctx.drawImage(background, 0, 0, 500, 600)
     invaders.forEach(inv => inv.draw(ctx));
     player.draw(ctx);
+    invaderShot && invaderShot.draw(ctx);
+    cannonShot && cannonShot.draw(ctx);
 }
 
 function move() {
@@ -43,6 +49,14 @@ function move() {
         invadersDx = -invadersDx
     }
     invaders.forEach(inv => inv.move(invadersDx, 0.5))
+    if(invaderShot && !invaderShot.move()){
+       invaderShot = null
+    }
+    if(!invaderShot) {
+        let active = invaders.filter(i => i.active)
+        let r =active[Math.floor(Math.random()*active.length)]
+        invaderShot = r.fire(20)
+    }
 }
 
 function game() {
